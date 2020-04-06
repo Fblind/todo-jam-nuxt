@@ -19,6 +19,7 @@
     </v-parallax>
     <v-content>
       <v-container>
+        <actions />
         <nuxt />
       </v-container>
     </v-content>
@@ -26,7 +27,9 @@
 </template>
 
 <script>
+import Actions from "../components/actions";
 export default {
+  components: {Actions},
   data () {
     return {
       today: this.formatDate(new Date())

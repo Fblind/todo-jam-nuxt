@@ -1,9 +1,9 @@
 <template>
   <v-container>
     <actions />
-    <task v-for="task of tasks" :key="task.title" :task="task" />
+    <task v-for="task of tasks" :key="task.id" :task="task" />
     <div class="text-center">
-      <v-btn class="mx-2" fab color="primary" @click="addTask({title: '', completed: false})">
+      <v-btn class="mx-2" fab color="primary" @click="addTask({title: '', completed: false, id: uuid()})">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </div>
@@ -11,14 +11,18 @@
 </template>
 
 <script>
-import Actions from "../components/actions";
 import Task from "../components/task";
+import uuid from "uuid-random";
 import {mapState, mapMutations} from "vuex";
 
 export default {
   name: "Index",
+  data() {
+    return {
+      uuid
+    }
+  },
   components: {
-    Actions,
     Task
   },
   computed: {
