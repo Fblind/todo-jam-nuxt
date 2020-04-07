@@ -3,6 +3,7 @@
     <v-parallax
       src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
       alt="landscape"
+      height="300"
     >
       <v-container class="height-100">
         <v-row class="height-100">

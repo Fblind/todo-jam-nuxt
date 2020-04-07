@@ -3,7 +3,7 @@
     <actions />
     <task v-for="task of tasks" :key="task.id" :task="task" />
     <div class="text-center">
-      <v-btn class="mx-2" fab color="primary" @click="addTask({title: '', completed: false, id: uuid()})">
+      <v-btn class="mx-2" fab color="primary" @click="newTask" :disabled="this.lastTask && this.lastTask.title === ''">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </div>
@@ -17,19 +17,23 @@ import {mapState, mapMutations} from "vuex";
 
 export default {
   name: "Index",
-  data() {
-    return {
-      uuid
-    }
-  },
   components: {
     Task
   },
   computed: {
-    ...mapState(["tasks"])
+    ...mapState(["tasks"]),
+    lastTask() {
+      const lastTask = this.tasks[this.tasks.length - 1];
+      return lastTask;
+    }
   },
   methods: {
-    ...mapMutations(["addTask"])
+    ...mapMutations(["addTask"]),
+    newTask() {
+      if (this.tasks.length && this.lastTask && this.lastTask.title !== "" || this.tasks.length === 0) {
+        this.addTask({ title: '', completed: false, id: uuid() });
+      }
+    }
   }
 }
 </script>
