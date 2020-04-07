@@ -74,5 +74,8 @@ module.exports = {
     */
     extend (config, ctx) {
     }
+  },
+  router: {
+    base: process.env.DEPLOY_ENV === 'GH_PAGES' ? 'todo-jam-nuxt' : '/'
   }
 }
