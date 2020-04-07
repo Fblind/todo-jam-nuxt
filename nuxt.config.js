@@ -76,6 +76,6 @@ module.exports = {
     }
   },
   router: {
-    base: process.env.DEPLOY_ENV === 'GH_PAGES' ? 'todo-jam-nuxt' : '/'
+    base: process.env.DEPLOY_ENV === 'GH_PAGES' ? '/todo-jam-nuxt/' : '/'
   }
 }
