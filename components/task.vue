@@ -2,7 +2,7 @@
   <v-card tile class="mb-2" :class="task.completed ? 'done' : 'not-done'">
     <v-row>
       <v-col :cols="editing ? 12 : 8" :xl="editing ? 12 : 10" :lg="editing ? 12 : 10" :md="editing ? 12 : 10" :sm="editing ? 12 : 10">
-        <v-card-title v-if="!editing" title="Double click to edit" :class="task.completed ? 'line-through' : ''" @click="editTask(task)">{{ task.title }}</v-card-title>
+        <v-card-title v-if="!editing" class="non-break" title="Double click to edit" :class="task.completed ? 'line-through' : ''" @click="editTask(task)">{{ task.title }}</v-card-title>
         <v-card-title v-if="editing">
           <v-text-field :value="task.title"
             ref="editText"
@@ -72,5 +72,9 @@ export default {
 
 .center {
   margin: 0 auto;
+}
+
+.non-break {
+  word-break: break-word;
 }
 </style>

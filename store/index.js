@@ -1,5 +1,6 @@
 export const state = () => ({
   tasks: [],
+  groups: [],
 });
 
 export const mutations = {
@@ -19,5 +20,17 @@ export const mutations = {
   },
   resetAll(state) {
     state.tasks = [];
+  },
+  saveCurrentGroup(state) {
+    const tasks = state.tasks.map(task => Object.assign({}, task, { completed: false }));
+    state.groups.push({ tasks });
+  },
+  addGroupToCurrentTasks(state) {
+    const lastGroup = state.groups[state.groups.length - 1];
+    const tasksIds = state.tasks.map(t => t.id);
+    const filteredGroupTasks = lastGroup.tasks.filter(t => !tasksIds.includes(t.id));
+    if (filteredGroupTasks.length) {
+      state.tasks = state.tasks.concat(filteredGroupTasks.map(task => Object.assign({}, task, { completed: false })));
+    }
   }
 };
