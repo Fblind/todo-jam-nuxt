@@ -1,5 +1,5 @@
 export const state = () => ({
-  tasks: []
+  tasks: [],
 });
 
 export const mutations = {
@@ -16,5 +16,8 @@ export const mutations = {
   setTitle(state, { title, task }) {
     const taskIndex = state.tasks.findIndex(t => t.id === task.id);
     state.tasks[taskIndex].title = title;
+  },
+  resetAll(state) {
+    state.tasks = [];
   }
 };

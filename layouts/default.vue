@@ -20,6 +20,7 @@
     </v-parallax>
     <v-content>
       <v-container>
+        <router />
         <actions />
         <nuxt />
       </v-container>
@@ -29,8 +30,9 @@
 
 <script>
 import Actions from "../components/actions";
+import Router from "../components/router";
 export default {
-  components: {Actions},
+  components: {Actions, Router},
   data () {
     return {
       today: this.formatDate(new Date())

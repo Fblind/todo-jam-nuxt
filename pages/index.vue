@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <actions />
     <task v-for="task of tasks" :key="task.id" :task="task" />
     <div class="text-center">
       <v-btn class="mx-2" fab color="primary" @click="newTask" :disabled="this.lastTask && this.lastTask.title === ''">
