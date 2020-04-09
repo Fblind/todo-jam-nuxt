@@ -11,6 +11,10 @@ export const mutations = {
     const taskIndex = state.tasks.findIndex(t => t.id === task.id);
     state.tasks[taskIndex].completed = true;
   },
+  undoCompleted(state, task) {
+    const taskIndex = state.tasks.findIndex(t => t.id === task.id);
+    state.tasks[taskIndex].completed = false;
+  },
   remove(state, task) {
     state.tasks.splice(state.tasks.indexOf(task), 1);
   },
@@ -21,9 +25,9 @@ export const mutations = {
   resetAll(state) {
     state.tasks = [];
   },
-  saveCurrentGroup(state) {
+  saveCurrentGroup(state, {name, id}) {
     const tasks = state.tasks.map(task => Object.assign({}, task, { completed: false }));
-    state.groups.push({ tasks });
+    state.groups.push({ id, name, tasks });
   },
   addGroupToCurrentTasks(state) {
     const lastGroup = state.groups[state.groups.length - 1];

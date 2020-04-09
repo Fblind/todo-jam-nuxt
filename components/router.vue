@@ -1,8 +1,8 @@
 <template>
   <v-row>
     <v-col :cols="12" class="router-menu">
-      <nuxt-link class="subtitle mr-4 router-link" :class="$route.name === 'index' ? 'current' : 'non-current'" to="/">Current tasks</nuxt-link>
-      <nuxt-link class="subtitle mr-4 router-link" :class="$route.name === 'new-group' ? 'current' : 'non-current'" to="/new-group">New task group</nuxt-link>
+      <nuxt-link class="subtitle mr-4 router-link" :class="$route.name === 'index' ? 'current' : 'non-current'" to="/">My Tasks</nuxt-link>
+      <nuxt-link class="subtitle mr-4 router-link" :class="$route.name === 'groups' ? 'current' : 'non-current'" to="/groups">My Groups</nuxt-link>
     </v-col>
   </v-row>
 </template>

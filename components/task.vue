@@ -15,6 +15,7 @@
         <v-card-title>
           <v-icon v-if="!task.completed" class="center" large color="success" title="Mark task as completed" @click="setCompleted(task)">mdi-check</v-icon>
           <v-icon v-if="task.completed" class="center" large color="error" title="Delete task" @click="remove(task)">mdi-delete</v-icon>
+          <v-icon v-if="task.completed" class="center" large title="Undo" @click="undoCompleted(task)">mdi-replay</v-icon>
         </v-card-title>
       </v-col>
     </v-row>
@@ -37,7 +38,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["setCompleted", "remove", "setTitle"]),
+    ...mapMutations(["setCompleted", "remove", "setTitle", "undoCompleted"]),
     editTask(task) {
       this.editing = true;
       this.$nextTick(() => {this.$refs.editText.focus()})
@@ -51,7 +52,6 @@ export default {
         this.setTitle({ title: newTitle, task: this.task });
       }
       this.cancelEdit();
-
     }
   }
 }
