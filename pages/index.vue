@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <task v-for="task of tasks" :key="task.id" :task="task" />
+    <actions />
+    <task v-for="task of tasksByOrderByCompleted" :key="task.id" :task="task" />
     <div class="text-center">
       <v-btn class="mx-2" fab color="primary" @click="newTask" :disabled="this.lastTask && this.lastTask.title === ''">
         <v-icon>mdi-plus</v-icon>
@@ -10,20 +11,36 @@
 </template>
 
 <script>
+import Actions from "../components/actions";
 import Task from "../components/task";
 import uuid from "uuid-random";
 import {mapState, mapMutations} from "vuex";
 
+function uncompletedFirst(task, otherTask) {
+  if (!task.completed && otherTask.completed) {
+    return -1;
+  }
+  if (task.completed && !otherTask.completed) {
+    return 1;
+  }
+  return 0;
+}
+
 export default {
   name: "Index",
   components: {
-    Task
+    Task,
+    Actions
   },
   computed: {
     ...mapState(["tasks"]),
     lastTask() {
       const lastTask = this.tasks[this.tasks.length - 1];
       return lastTask;
+    },
+    tasksByOrderByCompleted() {
+      const sortedTasks = [...this.tasks]
+      return sortedTasks.sort(uncompletedFirst);
     }
   },
   methods: {

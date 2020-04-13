@@ -13,9 +13,18 @@
       </v-col>
       <v-col v-if="!editing" :cols="4" :xl="2" :lg="2" :md="2" :sm="2" :align="'center'" :justify="'center'">
         <v-card-title>
-          <v-icon v-if="!task.completed" class="center" large color="success" title="Mark task as completed" @click="setCompleted(task)">mdi-check</v-icon>
-          <v-icon v-if="task.completed" class="center" large color="error" title="Delete task" @click="remove(task)">mdi-delete</v-icon>
+          <v-icon
+            v-if="!task.completed"
+            class="center"
+            large
+            color="success"
+            title="Mark task as completed"
+            @click="setCompleted(task)"
+          >
+            mdi-check
+          </v-icon>
           <v-icon v-if="task.completed" class="center" large title="Undo" @click="undoCompleted(task)">mdi-replay</v-icon>
+          <v-icon v-if="task.completed" class="center" large color="error" title="Delete task" @click="remove(task)">mdi-delete</v-icon>
         </v-card-title>
       </v-col>
     </v-row>

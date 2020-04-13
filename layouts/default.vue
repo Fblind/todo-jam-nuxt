@@ -21,7 +21,6 @@
     <v-content>
       <v-container>
         <router />
-        <actions />
         <nuxt />
       </v-container>
     </v-content>
@@ -29,10 +28,9 @@
 </template>
 
 <script>
-import Actions from "../components/actions";
 import Router from "../components/router";
 export default {
-  components: {Actions, Router},
+  components: {Router},
   data () {
     return {
       today: this.formatDate(new Date())

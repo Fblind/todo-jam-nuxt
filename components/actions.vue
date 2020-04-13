@@ -2,8 +2,8 @@
   <v-row>
     <v-col :cols="12" align="end">
       <v-icon title="Delete all tasks" @click="resetAll">mdi-delete</v-icon>
-      <v-icon title="Add new group" @click="addGroupToCurrentTasks">post_add</v-icon>
-      <v-icon title="Save current list" @click="addGroupName" :disabled="!tasks || tasks.length === 0">save</v-icon>
+      <v-icon title="Add new group" :disabled="groups.length === 0" @click="$router.push('groups')">mdi-plus-box-multiple</v-icon>
+      <v-icon title="Save current list" @click="addGroupName" :disabled="!tasks || tasks.length === 0">mdi-content-save</v-icon>
     </v-col>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
@@ -42,7 +42,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["tasks"])
+    ...mapState(["tasks", "groups"])
   },
   methods: {
     ...mapMutations(["resetAll", "saveCurrentGroup", "addGroupToCurrentTasks"]),
