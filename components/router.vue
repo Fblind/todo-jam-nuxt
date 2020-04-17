@@ -1,36 +1,27 @@
 <template>
-  <v-row>
-    <v-col :cols="12" class="router-menu">
-      <nuxt-link class="subtitle mr-4 router-link" :class="$route.name === 'index' ? 'current' : 'non-current'" to="/">My Tasks</nuxt-link>
-      <nuxt-link class="subtitle mr-4 router-link" :class="$route.name === 'groups' ? 'current' : 'non-current'" to="/groups">My Groups</nuxt-link>
-    </v-col>
-  </v-row>
+  <v-tabs
+    v-model="activeTab">
+    <v-tab v-for="tab of tabs" :key="tab.id" :to="tab.route" exact>
+      {{ tab.displayName }}
+    </v-tab>
+  </v-tabs>
 </template>
 
 <script>
 export default {
   name: "Router",
+  data() {
+    return {
+      activeTab: this.$route.name,
+      tabs: [
+        { id: 1, displayName: "My Tasks", name: "index", route: `/` },
+        { id: 2, displayName: "My Groups", name: "groups", route: `/groups` },
+      ]
+    }
+  }
 }
 </script>
 
 <style>
-.router-link {
-  padding-bottom: 1rem;
-  text-decoration: none;
-  color: black !important;
-}
-
-.current {
-  border-bottom: 2px solid #1976d2;
-}
-
-.non-current {
-  opacity: 0.5;
-}
-
-.router-menu {
-  padding-top: 0;
-  padding-bottom: 1rem;
-}
 
 </style>
