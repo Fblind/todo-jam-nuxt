@@ -4,10 +4,10 @@
     <img src="~/assets/MeditatingDoodle.svg" class="empty-img-hero">
     <v-row class="text-center">
       <v-col>
-        <v-btn color="primary" @click="addTask({ title: '', completed: false, id: uuid() });">Add new task</v-btn>
+        <v-btn v-bind="size" color="primary" @click="addTask({ title: '', completed: false, id: uuid() });">Add new task</v-btn>
         <template v-if="groups.length !== 0">
-          <span>&nbsp&nbsp or &nbsp&nbsp</span>
-          <v-btn color="primary" @click="$router.push('groups')">Add new group</v-btn>
+          <span> or </span>
+          <v-btn v-bind="size" color="primary" @click="$router.push('groups')">Add new group</v-btn>
         </template>
       </v-col>
     </v-row>
@@ -24,7 +24,13 @@ export default {
       uuid
     }
   },
-  computed: {...mapState(["groups"])},
+  computed: {
+    ...mapState(["groups"]),
+    size() {
+      const size = { xs: 'x-small', sm: 'small', lg: 'large', xl: 'x-large' }[this.$vuetify.breakpoint.name];
+      return size ? { [size]: true } : {};
+    }
+  },
   methods: {
     ...mapMutations(["addTask"]),
   }
