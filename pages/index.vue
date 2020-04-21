@@ -3,6 +3,16 @@
     <empty-task v-if="!tasks || tasks.length === 0" />
     <template v-else>
       <actions />
+      <v-row>
+        <v-col align="center">
+          <v-btn fab small color="green" v-on="on">
+            <v-icon title="Add new task" @click="newTask" :disabled="lastTask && lastTask.title === ''" color="white">mdi-plus</v-icon>
+          </v-btn>
+          <v-btn fab small color="red" v-on="on">
+            <v-icon title="Delete all tasks" @click="resetAll" color="white">mdi-delete</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
       <task v-for="task of tasksByOrderByCompleted" :key="task.id" :task="task" />
     </template>
   </v-container>
@@ -52,7 +62,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["addTask"]),
+    ...mapMutations(["addTask", "resetAll"]),
     newTask() {
       if (this.tasks.length && this.lastTask && this.lastTask.title !== "" || this.tasks.length === 0) {
         this.addTask({ title: '', completed: false, id: uuid() });

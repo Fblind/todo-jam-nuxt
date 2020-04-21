@@ -4,7 +4,7 @@
       <v-container class="height-100">
         <v-row class="height-100">
           <v-col cols="12">
-            <v-row class="height-100 white-text" align="end">
+            <v-row class="height-100 white--text" align="end">
               <v-col cols="12">
                 <h1 class="mb-0 pb-0 display-2">{{ today.number }} {{ today.month }}</h1>
                 <h1 class="display-headline">{{ today.day }}</h1>
@@ -79,9 +79,5 @@ export default {
 }
 .height-30 {
   height: 30vh !important;
-}
-
-.white-text {
-  color: white;
 }
 </style>
