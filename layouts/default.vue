@@ -1,14 +1,10 @@
 <template>
   <v-app>
-    <v-parallax
-      src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-      alt="landscape"
-      class="height-30"
-    >
+    <v-img :src="'/hero/' + imageName" alt="landscape" class="height-30">
       <v-container class="height-100">
         <v-row class="height-100">
           <v-col cols="12">
-            <v-row class="height-100" align="end">
+            <v-row class="height-100 white-text" align="end">
               <v-col cols="12">
                 <h1 class="mb-0 pb-0 display-2">{{ today.number }} {{ today.month }}</h1>
                 <h1 class="display-headline">{{ today.day }}</h1>
@@ -17,7 +13,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-parallax>
+    </v-img>
     <v-content>
       <v-container>
         <router />
@@ -33,7 +29,8 @@ export default {
   components: {Router},
   data () {
     return {
-      today: this.formatDate(new Date())
+      today: this.formatDate(new Date()),
+      imageName: this.getImageName()
     }
   },
   methods: {
@@ -68,6 +65,10 @@ export default {
         month: months[date.getMonth()],
         day: days[date.getDay()],
       }
+    },
+    getImageName () {
+      const imageNro = Math.floor(Math.random() * 11) + 1;
+      return `${imageNro}.jpg`
     }
   }
 }
@@ -78,5 +79,9 @@ export default {
 }
 .height-30 {
   height: 30vh !important;
+}
+
+.white-text {
+  color: white;
 }
 </style>
