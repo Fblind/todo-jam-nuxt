@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-img :src="'/hero/' + imageName" alt="landscape" class="height-30">
+    <v-img :src="imagePath" alt="landscape" class="height-30">
       <v-container class="height-100">
         <v-row class="height-100">
           <v-col cols="12">
@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       today: this.formatDate(new Date()),
-      imageName: this.getImageName()
+      imagePath: `${this.$router.options.base}hero/${this.getImageName()}`
     }
   },
   methods: {
